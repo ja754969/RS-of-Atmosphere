@@ -29,7 +29,7 @@ for i = 1:length(T_high_temp)
     B_lambda_high_temp = c1./...
         ((wave_length_high_temp.^5).*...
         (exp(c2./wave_length_high_temp/T_high_temp(i))-1)); % J/(m^2)/(sec)/(meter)/(sr)
-    bh{i} = semilogx(wave_length_high_temp*(10^6),B_lambda_high_temp/(10^6)*(10^-7));
+    bh{i} = semilogx(wave_length_high_temp*(10^6),B_lambda_high_temp/(10^6)*(10^-7),'LineWidth',4.5);
     hold on;
 end
 hold off;
@@ -42,13 +42,15 @@ legend([bh{1}, bh{2}, bh{3}, bh{4}, bh{5}],...
     [num2str(T_high_temp(4)) ' K'],...
     [num2str(T_high_temp(5)) ' K']},'Location','northeastoutside',...
     'FontSize',12)
-grid(ax1,'on','GridColor','k')
+grid(ax1,'on','GridColor','k','LineWidth',2)
 ax1.GridAlpha = 0.2;
+ax1.FontSize = 12;
+ax1.LineWidth = 2;
 x_ticks = wave_length_high_temp*(10^6);
 xticks([x_ticks(1):0.1:x_ticks(find(x_ticks==1)) x_ticks(find(x_ticks==2)):1:x_ticks(end)])
 title('Planck''s Law : High Temperature')
-ylabel(['Blackbody radiantion intensity, B_{\lambda}' '(10^7 W/{m^2}-{\mum}-sr)'])
-xlabel('Wavelength \lambda (\mum)')
+ylabel(['Blackbody radiantion intensity, B_{\lambda}' '(10^7 W/{m^2}-{\mum}-sr)'],'FontSize',15)
+xlabel('Wavelength \lambda (\mum)','FontSize',20)
 %% Variables (Normal-temperature black body radiation)
 % c1 = 2*h*(c^2); % erg*(cm^2)/sec/(sr)
 % c2 = h*c/K; % (cm-K)
@@ -59,7 +61,7 @@ wave_length_normal_temp = [2:0.25:100]*(10^-6);
 %% Figure  (Normal-temperature black body radiation)
 % figure
 ax2=axes;
-ax2.Position = [0.05 0.05 0.8 0.4];
+ax2.Position = [0.05 0.055 0.8 0.4];
 % wave_length_normal_temp = wave_length_normal_temp*(10^6);
 T_normal_temp = [300 290 280 260 240]; % Temperature in Kelvin
 % B_lambda_constant_temp = c1./((wave_length.^5).*(exp(c2./wave_length/T)-1)); % erg/(cm^2)/(sec)/(meter)/(sr)
@@ -70,7 +72,7 @@ B_lambda_normal_temp = c1./...
 % B_lambda_normal_temp = B_lambda_normal_temp/(10^6);
 % text_loc(i) = find(max(B_lambda_normal_temp/(10^6)));
     bn{i} = semilogx(wave_length_normal_temp*(10^6),...
-        B_lambda_normal_temp/(10^6));
+        B_lambda_normal_temp/(10^6),'LineWidth',4.5);
     hold on;
 % text(B_lambda_normal_temp(text_loc(i))/(10^6),...
 %     wave_length_normal_temp(text_loc(i))*(10^6),'K')
@@ -87,17 +89,16 @@ legend([bn{1}, bn{2}, bn{3}, bn{4}, bn{5}],...
     [num2str(T_normal_temp(4)) ' K'],...
     [num2str(T_normal_temp(5)) ' K']},'Location','northeastoutside',...
     'FontSize',12)
-% ytickformat('%2.1f')
-% New_XTickLabel = get(gca,'xtick');
-% set(gca,'XTickLabel',New_XTickLabel);
-% xtickformat('%f')
+ax2.FontSize = 12;
+ax2.LineWidth = 2;
 x_ticks = wave_length_normal_temp*(10^6);
 xticks([x_ticks(1):1:x_ticks(find(x_ticks==10)) x_ticks(find(x_ticks==20)):10:x_ticks(end)])
-grid(ax2,'on','GridColor','k')
+xticklabels.FontSize = 20;
+grid(ax2,'on','GridColor','k','LineWidth',20)
 ax2.GridAlpha = 0.2;
 title('Planck''s Law : Normal Temperature')
-ylabel(['Blackbody radiantion intensity, B_{\lambda}' '(W/{m^2}-{\mum}-sr)'])
-xlabel('Wavelength \lambda (\mum)')
+ylabel(['Blackbody radiantion intensity, B_{\lambda}' '(W/{m^2}-{\mum}-sr)'],'FontSize',15)
+xlabel('Wavelength \lambda (\mum)','FontSize',20)
 %% Output the figure
 print('ATM_RS_00781035_EX_04_part2','-dtiffn','-r300')
 print('ATM_RS_00781035_EX_04_part2','-dpdf','-fillpage')

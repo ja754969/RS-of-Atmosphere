@@ -18,29 +18,38 @@ f.PaperSize = [29.7 21]; % A4 papersize (horizontal,21-by-29.7 cm,[width height]
 f.PaperType = '<custom>';
 f.WindowState = 'maximized';
 f
+ax = axes;
 water = plot(T_water-K_to_celsius,e_s_water);hold on;
 ice = plot(T_ice-K_to_celsius,e_s_ice);hold off;
+
+% water = semilogy(T_water-K_to_celsius,e_s_water);hold on;
+% ice = semilogy(T_ice-K_to_celsius,e_s_ice);hold off;
+
+% water = loglog(T_water-K_to_celsius,e_s_water);hold on;
+% ice = loglog(T_ice-K_to_celsius,e_s_ice);hold off;
+ax.FontSize = 12;
+ax.LineWidth = 1.5;
 xlabel('Temperature (^{o}C)','FontSize',14)
 ylabel('e_s : Saturated Vapor Pressure (hPa)','FontSize',14)
 legend([water,ice],{'water','ice'},'FontSize',12,'TextColor','blue')
 grid on;
 grid minor;
 %% Zoom in
-ax2 = axes;
-ax2.Position = [0.15 0.2 0.2 0.1];
-water = plot(T_water-K_to_celsius,e_s_water);hold on;
-ice = plot(T_ice-K_to_celsius,e_s_ice);hold off;
-xlim([-20.05 -18])
-ylim([0.8 2])
-ax2.YAxisLocation = 'right';
+% ax2 = axes;
+% ax2.Position = [0.15 0.2 0.2 0.1];
+% water = plot(T_water-K_to_celsius,e_s_water);hold on;
+% ice = plot(T_ice-K_to_celsius,e_s_ice);hold off;
+% xlim([-20.05 -18])
+% ylim([0.8 2])
+% ax2.YAxisLocation = 'right';
 %% Zoom in
-ax3 = axes;
-ax3.Position = [0.15 0.35 0.2 0.1];
-water = plot(T_water-K_to_celsius,e_s_water);hold on;
-ice = plot(T_ice-K_to_celsius,e_s_ice);hold off;
-xlim([-.05 0.01])
-ylim([6.1 6.11])
-ax3.YAxisLocation = 'right';
+% ax3 = axes;
+% ax3.Position = [0.15 0.35 0.2 0.1];
+% water = plot(T_water-K_to_celsius,e_s_water);hold on;
+% ice = plot(T_ice-K_to_celsius,e_s_ice);hold off;
+% xlim([-.05 0.01])
+% ylim([6.1 6.11])
+% ax3.YAxisLocation = 'right';
 %% Output the figure
 print('ATM_RS_00781035_EX_01','-dtiffn','-r300')
 print('ATM_RS_00781035_EX_01','-dpdf','-fillpage')
